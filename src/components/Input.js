@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.input`
-  width: 124px;
+  width: 132px;
 
   border: 2px solid hsl(0, 0%, 86%);
   border-radius: 8px;
