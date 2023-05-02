@@ -1,13 +1,17 @@
 import FormGroup from '../FormGroup';
-import { ButtonContainer, Container, FormGroupContainer } from './styles';
+import { ButtonContainer, Form, FormGroupContainer } from './styles';
 
 import Input from '../Input';
 
 import arrow from '../../assets/images/icon-arrow.svg';
 
 export default function BirthdayForm() {
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
-    <Container>
+    <Form onSubmit={handleSubmit}>
       <FormGroupContainer>
         <FormGroup>
           <p>DAY</p>
@@ -28,11 +32,11 @@ export default function BirthdayForm() {
       <ButtonContainer>
         <div className="line" />
 
-        <button type="button">
+        <button type="submit">
           <img src={arrow} alt="arrow" />
         </button>
       </ButtonContainer>
 
-    </Container>
+    </Form>
   );
 }
