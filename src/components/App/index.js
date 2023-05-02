@@ -1,10 +1,16 @@
 import GlobalStyles from '../../assets/styles/global';
 
+import BirthdayForm from '../BirthdayForm';
+import { Container } from './styles';
+
 function App() {
   return (
     <>
       <GlobalStyles />
-      <p>ok hay</p>
+
+      <Container>
+        <BirthdayForm />
+      </Container>
     </>
   );
 }

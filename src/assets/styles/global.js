@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -9,7 +9,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #F6F5FC;
+    background: hsl(0, 0%, 94%);
     color: #222222;
     font-size: 16px;
   }
@@ -17,5 +17,5 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-    
+
 `;
