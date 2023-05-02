@@ -57,13 +57,15 @@ export default function BirthdayForm() {
           />
         </FormGroup>
 
-        <FormGroup>
+        <FormGroup
+          error="Thils field is required"
+        >
           <p>YEAR</p>
           <Input
             value={year}
             onChange={handleYearChange}
             placeholder="YYYY"
-            required
+            error
           />
         </FormGroup>
       </FormGroupContainer>

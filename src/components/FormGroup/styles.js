@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   p {
@@ -8,9 +8,23 @@ export const Container = styled.div`
     letter-spacing: 4px;
     margin-bottom: 8px;
     font-size: 12px;
+
+  }
+
+  i {
+    color: hsl(0, 100%, 67%);
+    font-size: 12px;
+    display: block;
+    margin-top: 8px;
   }
 
   & + & {
     margin-left: 32px;
   }
+
+  ${({ error }) => error && css`
+    p {
+      color: hsl(0, 100%, 67%);
+    }
+  `}
 `;

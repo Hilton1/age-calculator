@@ -3,14 +3,22 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-export default function FormGroup({ children }) {
+export default function FormGroup({ children, error }) {
   return (
-    <Container>
+    <Container
+      error={error?.length > 0}
+    >
       {children}
+      {error && <i>{error}</i>}
     </Container>
   );
 }
 
 FormGroup.propTypes = {
   children: PropTypes.node.isRequired,
+  error: PropTypes.string,
+};
+
+FormGroup.defaultProps = {
+  error: null,
 };
