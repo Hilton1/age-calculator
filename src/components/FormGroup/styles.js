@@ -7,6 +7,7 @@ export const Container = styled.div`
     font-weight: bold;
     letter-spacing: 4px;
     margin-bottom: 8px;
+    font-size: 12px;
   }
 
   & + & {
