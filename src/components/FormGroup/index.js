@@ -6,7 +6,7 @@ import { Container } from './styles';
 export default function FormGroup({ children, error }) {
   return (
     <Container
-      error={error?.length > 0}
+      error={error}
     >
       {children}
       {error && <i>{error}</i>}
