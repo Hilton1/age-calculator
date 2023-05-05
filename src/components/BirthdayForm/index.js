@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 
 import { ButtonContainer, Form, FormGroupContainer } from './styles';
@@ -13,13 +15,12 @@ import formatYear from '../../utils/formatYear';
 
 import useErrors from '../../hooks/useErrors';
 
-export default function BirthdayForm() {
+export default function BirthdayForm({ onCalculateAge }) {
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
   const {
-    errors,
     setError,
     removeError,
     getErrorMessageByFieldname,
@@ -28,21 +29,25 @@ export default function BirthdayForm() {
   function validateDay() {
     if (!day) {
       setError({ field: 'day', message: 'This field is required' });
-    } else if (day > 31 || day < 1) {
+      return true;
+    } if (day > 31 || day < 1) {
       setError({ field: 'day', message: 'Must be a valid day' });
-    } else {
-      removeError('day');
+      return true;
     }
+    removeError('day');
+    return false;
   }
 
   function validateMonth() {
     if (!month) {
       setError({ field: 'month', message: 'This field is required' });
-    } else if (month > 12 || month < 1) {
+      return true;
+    } if (month > 12 || month < 1) {
       setError({ field: 'month', message: 'Must be a valid month' });
-    } else {
-      removeError('month');
+      return true;
     }
+    removeError('month');
+    return false;
   }
 
   function validateYear() {
@@ -50,11 +55,13 @@ export default function BirthdayForm() {
 
     if (!year) {
       setError({ field: 'year', message: 'This field is required' });
-    } else if (year > currentYear || year < 1) {
+      return true;
+    } if (year > currentYear || year < 1) {
       setError({ field: 'year', message: 'Must be a valid year' });
-    } else {
-      removeError('year');
+      return true;
     }
+    removeError('year');
+    return false;
   }
 
   function handleSubmit(event) {
@@ -64,8 +71,10 @@ export default function BirthdayForm() {
     validateMonth();
     validateYear();
 
-    if (errors.length > 0) {
-      console.log('tem erro');
+    const errorExists = validateDay() || validateMonth() || validateYear();
+
+    if (!errorExists) {
+      onCalculateAge(`${year}-${month}-${day}`);
     }
   }
 
@@ -120,3 +129,7 @@ export default function BirthdayForm() {
     </Form>
   );
 }
+
+BirthdayForm.propTypes = {
+  onCalculateAge: PropTypes.func.isRequired,
+};

@@ -1,34 +1,49 @@
+import { useState } from 'react';
 import GlobalStyles from '../../assets/styles/global';
 
 import BirthdayForm from '../BirthdayForm';
-import { Container, DateContainer, Date } from './styles';
+import ResultAge from '../ResultAge';
 
-const data = '- -';
+import { Container } from './styles';
 
 function App() {
+  const [years, setYears] = useState('- -');
+  const [months, setMonths] = useState('- -');
+  const [days, setDays] = useState('- -');
+
+  function handleCalculateAge(birthDate) {
+    const today = new window.Date();
+    const birth = new window.Date(birthDate);
+    const diffTime = today.getTime() - birth.getTime();
+    const diffAge = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+    birth.setFullYear(birth.getFullYear() + diffAge);
+
+    const diffMonths = Math.floor(
+      (today.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24 * 30.44),
+    );
+
+    birth.setMonth(birth.getMonth() + diffMonths);
+    const diffDays = Math.floor((today.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24));
+
+    setYears(diffAge);
+    setMonths(diffMonths);
+    setDays(diffDays);
+  }
+
   return (
     <>
       <GlobalStyles />
 
       <Container>
-        <BirthdayForm />
+        <BirthdayForm
+          onCalculateAge={handleCalculateAge}
+        />
 
-        <DateContainer>
-          <Date>
-            <i className="date">{data} </i>
-            <i>years</i>
-          </Date>
-
-          <Date>
-            <i className="date">{data} </i>
-            <i>months</i>
-          </Date>
-
-          <Date>
-            <i className="date">{data} </i>
-            <i>days</i>
-          </Date>
-        </DateContainer>
+        <ResultAge
+          years={years}
+          months={months}
+          days={days}
+        />
       </Container>
     </>
   );
