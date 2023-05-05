@@ -26,52 +26,26 @@ export default function BirthdayForm({ onCalculateAge }) {
     getErrorMessageByFieldname,
   } = useErrors();
 
-  function validateDay() {
-    if (!day) {
-      setError({ field: 'day', message: 'This field is required' });
+  function validateAge({ value, fieldName }) {
+    if (!value) {
+      setError({ field: fieldName, message: 'This field is required' });
       return true;
-    } if (day > 31 || day < 1) {
-      setError({ field: 'day', message: 'Must be a valid day' });
-      return true;
-    }
-    removeError('day');
-    return false;
-  }
-
-  function validateMonth() {
-    if (!month) {
-      setError({ field: 'month', message: 'This field is required' });
-      return true;
-    } if (month > 12 || month < 1) {
-      setError({ field: 'month', message: 'Must be a valid month' });
+    } if (value < 1) {
+      setError({ field: fieldName, message: `Must be a valid ${fieldName}` });
       return true;
     }
-    removeError('month');
-    return false;
-  }
-
-  function validateYear() {
-    const currentYear = new Date().getFullYear();
-
-    if (!year) {
-      setError({ field: 'year', message: 'This field is required' });
-      return true;
-    } if (year > currentYear || year < 1) {
-      setError({ field: 'year', message: 'Must be a valid year' });
-      return true;
-    }
-    removeError('year');
+    removeError(fieldName);
     return false;
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    validateDay();
-    validateMonth();
-    validateYear();
+    const validateDay = validateAge({ value: day, fieldName: 'day' });
+    const validateMonth = validateAge({ value: month, fieldName: 'month' });
+    const validateYear = validateAge({ value: year, fieldName: 'year' });
 
-    const errorExists = validateDay() || validateMonth() || validateYear();
+    const errorExists = validateDay || validateMonth || validateYear;
 
     if (!errorExists) {
       onCalculateAge(`${year}-${month}-${day}`);
@@ -125,7 +99,6 @@ export default function BirthdayForm({ onCalculateAge }) {
           <img src={arrow} alt="arrow" />
         </button>
       </ButtonContainer>
-
     </Form>
   );
 }
