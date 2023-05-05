@@ -40,9 +40,9 @@ function App() {
         />
 
         <ResultAge
-          years={years}
-          months={months}
-          days={days}
+          years={years.toString()}
+          months={months.toString()}
+          days={days.toString()}
         />
       </Container>
     </>
