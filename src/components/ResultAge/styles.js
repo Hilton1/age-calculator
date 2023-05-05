@@ -31,7 +31,7 @@ export const Date = styled.div`
 
   @media (max-width: 425px) {
     i {
-      font-size: 56px;
+      font-size: 48px;
     }
   }
 `;
