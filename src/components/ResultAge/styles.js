@@ -15,7 +15,23 @@ export const Date = styled.div`
   }
 
   .date {
-    margin-right: 4px;
+    margin-right: 16px;
     color: hsl(259, 100%, 65%);
+  }
+
+  @media (max-width: 610px) {
+    i {
+      font-size: 64px;
+    }
+
+    .date {
+      margin-right: 8px;
+    }
+  }
+
+  @media (max-width: 425px) {
+    i {
+      font-size: 56px;
+    }
   }
 `;

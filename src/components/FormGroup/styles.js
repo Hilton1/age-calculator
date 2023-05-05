@@ -22,6 +22,12 @@ export const Container = styled.div`
     margin-left: 32px;
   }
 
+  @media (max-width: 610px) {
+    & + & {
+    margin-left: 16px;
+  }
+  }
+
   ${({ error }) => error && css`
     p {
       color: hsl(0, 100%, 67%);

@@ -34,4 +34,19 @@ export const ButtonContainer = styled.div`
       }
     }
   }
+
+  @media (max-width: 425px) {
+    position: relative;
+    margin: 50px 0;
+
+    button {
+      position: absolute;
+      left: 45%;
+
+      img {
+        width: 60px;
+        padding: 16px;
+      }
+    }
+  }
 `;
