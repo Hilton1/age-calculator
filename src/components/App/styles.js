@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin: 76px auto;
   padding: 64px;
 
-  border-radius: 24px 24px 72px 24px;
+  border-radius: 24px 24px 216px 24px;
 
   background: hsl(0, 0%, 100%);
 `;
